@@ -1,11 +1,16 @@
 import React from "react";
-import "../src/index.css";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "../src/utils/AppRoutes"
+import "../src/App.css";
 
 function App() {
-    return(
-        <h1 className="text-3xl">Hello world!</h1>
-    )
+    return (
+        <>
+        <Router>
+            <AppRoutes />
+        </Router>
+        </>
+    );
 }
 
 export default App;
