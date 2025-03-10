@@ -1,0 +1,13 @@
+.app-header{
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.427) , rgba(0, 0, 0, 0.433));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.136);
+    button{
+        color: rgba(255, 253, 253, 0.989);
+        border: transparent;
+    }
+}
+.content-img{
+    img{
+        filter: drop-shadow(20px 10px 20px rgb(0, 0, 0));
+    }
+}
