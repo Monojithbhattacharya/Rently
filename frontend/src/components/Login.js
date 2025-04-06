@@ -13,7 +13,7 @@ const Login = ({ handleWelcomeNav }) => {
         try {
             const response = await axios.post(`${API_URL}/login`, { username, password })
             if (response.status === 200) {
-                navigate(`/home/${username}`, { state: { message: response.data.message, username: response.data.username } })
+                navigate(`/home/${username}`, { state: { message: response.data.message, username: response.data.username, userId: response.data.userID } })
             }
         } catch (error) {
             toast.error(error.response.data.message);

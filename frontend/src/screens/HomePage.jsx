@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer } from 'react-toastify';
 import { HOME, TENENT } from "../constant";
 import Header from "../components/header";
 import CreateTenent from "../components/CreateTenent";
@@ -9,12 +9,8 @@ const HomePage = () => {
     const [tenentName, setTenentName] = useState("");
     const [showAddTenent, setShowAddTenent] = useState(false);
     const location = useLocation();
+    const userId = location.state?.userId;
     const username = location.state?.username;
-    const success_message = location.state?.message;
-
-    useEffect(() => {
-        toast.success(success_message);
-    }, [success_message])
 
     const data = [
         { id: 2000, tenentName: "Monojit", actualRent: 5000, unitPrice: 10, currentMonth: 6500, totalRent: 30000, rentPaid: 10000, rentBalance: 20000 },
@@ -29,7 +25,7 @@ const HomePage = () => {
             <div className="home-component min-h-screen w-full h-full bg-dark">
                 <Header username={username} />
                 {showAddTenent ?
-                    <CreateTenent handleShowAdd={handleShowAdd} /> :
+                    <CreateTenent handleShowAdd={handleShowAdd} userId={userId} /> :
                     <>
                         <div className="home-content flex justify-between w-auto h-auto p-3 mt-3">
                             <div className="add-tenent lg:w-60 sm:w-35 h-auto lg:mx-5">
@@ -45,7 +41,7 @@ const HomePage = () => {
                         </div>
                         {data.length === 0 ?
                             <div className="home-table w-auto h-auto mt-5 p-3 flex justify-center">
-                                <h3 className="text-gray-300 italic tracking-widest lg:text-lg md:text-md sm:text-sm me-4 mt-2">No Tenent Were Added!</h3>
+                                <h3 className="text-gray-300 italic tracking-widest lg:text-lg md:text-md sm:text-sm me-4 mt-2">No Tenant Were Added!</h3>
                             </div>
                             :
                             <div className="home-table w-auto h-auto mt-5 p-3">
