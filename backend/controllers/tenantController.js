@@ -38,11 +38,28 @@ export const addTenant = async (req, res) => {
             rentingDate,
             rentPrice,
             unitPrice,
+            currentMonth: rentPrice,
+            totalRent: rentPrice,
+            rentPaid: 0,
+            rentBalance: rentPrice,
             userId,
         });
         await newTenant.save();
         res.status(201).json({ message: "Tenant added successfully.", tenantID: newTenant.tenantID, userID: newTenant.userId });
     } catch (error) {
         res.status(500).json({ message: "Failed to Add the Tenant" });
+    }
+};
+
+export const getAllTenants = async (req, res) => {
+    try {
+        const userId  = Number(req.params.id);
+        const tenants = await Tenant.find({ userId });      
+        if (!tenants || tenants.length === 0) {
+            return res.status(404).json({ message: "No tenants found." });
+        }
+        res.status(200).json(tenants);
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch tenants." });
     }
 };

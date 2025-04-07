@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Bounce, ToastContainer } from 'react-toastify';
-import { HOME, TENENT } from "../constant";
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { API_URL, HOME, TENENT } from "../constant";
 import Header from "../components/header";
 import CreateTenent from "../components/CreateTenent";
+import axios from "axios";
 
 const HomePage = () => {
     const [tenentName, setTenentName] = useState("");
+    const [data, setData] = useState([]);
     const [showAddTenent, setShowAddTenent] = useState(false);
     const location = useLocation();
     const userId = location.state?.userId;
     const username = location.state?.username;
 
-    const data = [
-        { id: 2000, tenentName: "Monojit", actualRent: 5000, unitPrice: 10, currentMonth: 6500, totalRent: 30000, rentPaid: 10000, rentBalance: 20000 },
-        { id: 2001, tenentName: "Subhash", actualRent: 6000, unitPrice: 12, currentMonth: 7000, totalRent: 45000, rentPaid: 40000, rentBalance: 5000 },
-    ]
+    useEffect(() => {
+        let isMounted = true;
+        const showAllTenents = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/getAllTenants/${userId}`);
+                if (response.status === 200 && isMounted) {
+                    setData(response.data);
+                    toast.success(`Total ${response.data.length} Tenents Record Found`);
+                }
+            } catch (error) {
+                if (isMounted) {
+                    toast.error(error.response.data.message);
+                }
+            }
+        }
+        showAllTenents();
+        return () => {
+            isMounted = false;
+        }
+    }, [userId]);
 
     const handleShowAdd = () => {
         setShowAddTenent(!showAddTenent)
@@ -69,9 +87,9 @@ const HomePage = () => {
                                                 <tr key={elem.id}>
                                                     <td><input type="checkbox" className="checkbox checkbox-sm" /></td>
                                                     <td>{index + 1}</td>
-                                                    <td>{elem.id}</td>
-                                                    <td>{elem.tenentName}</td>
-                                                    <td>{elem.actualRent}</td>
+                                                    <td>{elem.tenantID}</td>
+                                                    <td>{elem.tenantName}</td>
+                                                    <td>{elem.rentPrice}</td>
                                                     <td>{elem.unitPrice}</td>
                                                     <td>{elem.currentMonth}</td>
                                                     <td>{elem.totalRent}</td>

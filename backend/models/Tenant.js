@@ -21,6 +21,22 @@ const tenantSchema = new mongoose.Schema({
     rentingDate: String,
     rentPrice: Number,
     unitPrice: Number,
+    currentMonth: {
+        type: Number,
+        default: 0
+    },
+    totalRent: {
+        type: Number,
+        default: 0
+    },
+    rentPaid: {
+        type: Number,
+        default: 0
+    },
+    rentBalance: {
+        type: Number,
+        default: 0
+    },
     userId: Number,
 })
 
