@@ -1,6 +1,5 @@
 import Tenant from "../models/Tenant.js";
 
-
 const generateTenantID = async () => {
     let tenantID;
     let isUnique = false;
