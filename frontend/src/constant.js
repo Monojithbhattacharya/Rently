@@ -64,7 +64,7 @@ export const ADD = {
     UNIT_PRICE: "Price Per Unit",
 }
 
-export const API_URL = "http://localhost:5000/api";
+export const API_URL = "https://localhost:5000/api";
 
 export const ERROR = {
     RESPONSE1: "Password doesn't match",

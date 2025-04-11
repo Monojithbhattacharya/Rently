@@ -39,14 +39,14 @@ export const addTenant = async (req, res) => {
             unitPrice,
             currentMonth: rentPrice,
             totalRent: rentPrice,
-            rentPaid: 0,
+            rentPaid: rentPrice,
             rentBalance: rentPrice,
             userId,
         });
         await newTenant.save();
-        res.status(201).json({ message: "Tenant added successfully.", tenantID: newTenant.tenantID, userID: newTenant.userId });
+        return res.status(201).json({ message: "Tenant added successfully.", tenantID: newTenant.tenantID, userID: newTenant.userId });
     } catch (error) {
-        res.status(500).json({ message: "Failed to Add the Tenant" });
+        return res.status(500).json({ message: "Failed to Add the Tenant" });
     }
 };
 
@@ -57,8 +57,8 @@ export const getAllTenants = async (req, res) => {
         if (!tenants || tenants.length === 0) {
             return res.status(404).json({ message: "No tenants found." });
         }
-        res.status(200).json(tenants);
+        return res.status(200).json(tenants);
     } catch (error) {
-        res.status(500).json({ message: "Failed to fetch tenants." });
+        return res.status(500).json({ message: "Failed to fetch tenants." });
     }
 };
