@@ -15,9 +15,9 @@ export const HOME = {
     SEARCH_BUTTON: "Search",
     ADD_BUTTON: "Add",
     WELCOME_USER: "Welcome",
-    ADD_TENENT: "Add New Tenent",
-    ADD_NEW_TENENT: "Add a New Tenent",
-    SEARCH_BY_TENENT_NAME: "Search By Tenent Name",
+    ADD_TENENT: "Add New Tenant",
+    ADD_NEW_TENENT: "Add a New Tenant",
+    SEARCH_BY_TENENT_NAME: "Search By Tenant Name",
     PDF: "Export As PDF",
 }
 
@@ -42,8 +42,8 @@ export const ABOUT ={
 
 export const TENENT = {
     SERIAL_NO: "S.No",
-    TENENT_ID: "Tenent ID",
-    TENENT_NAME: "Tenent Name",
+    TENENT_ID: "Tenant ID",
+    TENENT_NAME: "Tenant Name",
     ACTUAL_RENT: "Actual Rent",
     UNITPRICE: "Unit Price",
     CURRENT_RENT: "Rent of current Month",
@@ -56,7 +56,7 @@ export const TENENT = {
 }
 
 export const ADD = {
-    TENENT_NAME: "Tenent Name",
+    TENENT_NAME: "Tenant Name",
     PHONE: "Phone Number",
     ADHAAR_NUM: "Adhaar Number",
     RENT_DATE: "Date of Renting",
@@ -64,7 +64,7 @@ export const ADD = {
     UNIT_PRICE: "Price Per Unit",
 }
 
-export const API_URL = "https://localhost:5000/api";
+export const API_URL = "http://localhost:5000/api";
 
 export const ERROR = {
     RESPONSE1: "Password doesn't match",
