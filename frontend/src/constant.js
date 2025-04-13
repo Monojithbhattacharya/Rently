@@ -19,6 +19,8 @@ export const HOME = {
     ADD_NEW_TENENT: "Add a New Tenant",
     SEARCH_BY_TENENT_NAME: "Search By Tenant Name",
     PDF: "Export As PDF",
+    TENENT_DETAILS: "Tenant Details",
+    EDIT_TENENT: "Edit Tenant Details",
 }
 
 export const LABEL = {
@@ -30,7 +32,11 @@ export const LABEL = {
 export const BUTTON ={
     ABOUT: "About",
     HELP: "Help",
-    CLOSE: "Close"
+    CLOSE: "Close",
+    SAVE: "Save",
+    UPDATE: "Update",
+    BACK: "Back",
+    DELETE: "Delete Tenant",
 }
 
 export const ABOUT ={
@@ -62,6 +68,7 @@ export const ADD = {
     RENT_DATE: "Date of Renting",
     RENT_PRICE: "Rent Per Month",
     UNIT_PRICE: "Price Per Unit",
+    UNIT_VALUE: "Enter the Unit Value",
 }
 
 export const API_URL = "http://localhost:5000/api";

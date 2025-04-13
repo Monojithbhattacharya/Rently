@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { API_URL, HOME, TENENT } from "../constant";
 import Header from "../components/header";
@@ -15,6 +15,7 @@ const HomePage = () => {
     const location = useLocation();
     const userId = location.state?.userId;
     const username = location.state?.username;
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -131,7 +132,7 @@ const HomePage = () => {
                                                                 </div>
                                                                 }
                                                             </td>
-                                                            <td><button className="btn btn-link italic">{TENENT.ACTION}</button></td>
+                                                            <td><button className="btn btn-link italic" onClick={() =>navigate("/tenant")}>{TENENT.ACTION}</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
