@@ -72,7 +72,7 @@ export const ADD = {
     RENT_PAID: "Enter the Paid Amount",
 }
 
-export const API_URL = "http://localhost:5000/api";
+export const API_URL = "https://rently-czql.onrender.com/api";
 
 export const ERROR = {
     RESPONSE1: "Password doesn't match",
