@@ -65,6 +65,11 @@ const HomePage = () => {
     const handleShowAdd = () => {
         setShowAddTenent(!showAddTenent)
     }
+
+    const handleViewDetails = (tenantId) => {
+        navigate("/tenant", { state: { tenantId}});
+    }
+
     return (
         <>
             {loading ? <div className="home-component min-h-screen w-full h-full bg-dark flex justify-center items-center">
@@ -115,7 +120,7 @@ const HomePage = () => {
                                                 </thead>
                                                 <tbody>
                                                     {data.map((elem, index) => (
-                                                        <tr key={elem.id}>
+                                                        <tr key={elem.tenantID}>
                                                             <td><input type="checkbox" className="checkbox checkbox-sm" /></td>
                                                             <td>{index + 1}</td>
                                                             <td>{elem.tenantID}</td>
@@ -132,7 +137,7 @@ const HomePage = () => {
                                                                 </div>
                                                                 }
                                                             </td>
-                                                            <td><button className="btn btn-link italic" onClick={() =>navigate("/tenant")}>{TENENT.ACTION}</button></td>
+                                                            <td><button className="btn btn-link italic" onClick={() =>handleViewDetails(elem.tenantID)}>{TENENT.ACTION}</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

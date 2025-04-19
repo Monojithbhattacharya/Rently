@@ -69,6 +69,7 @@ export const ADD = {
     RENT_PRICE: "Rent Per Month",
     UNIT_PRICE: "Price Per Unit",
     UNIT_VALUE: "Enter the Unit Value",
+    RENT_PAID: "Enter the Paid Amount",
 }
 
 export const API_URL = "http://localhost:5000/api";
