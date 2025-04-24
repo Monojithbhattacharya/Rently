@@ -160,37 +160,37 @@ const TenantDetails = () => {
                             <div className="w-full h-auto flex justify-evenly gap-2 p-1">
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{TENENT.TENENT_ID}</label><br />
-                                    <input type="text" className="input input-sm" value={tenantId ? tenantId : ""} disabled />
+                                    <input type="text" className="input input-sm" value={tenantId ? tenantId : ""} style={{color:"white"}} disabled />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{TENENT.TENENT_NAME}</label><br />
-                                    <input type="text" placeholder={ADD.TENENT_NAME} className="input input-sm" style={{ outline: "none" }} value={tenantName} onChange={(e) => setTenantName(e.target.value)} disabled={!editOption ? true : false} />
+                                    <input type="text" placeholder={ADD.TENENT_NAME} className="input input-sm" style={{ outline: "none", color:"white" }} value={tenantName} onChange={(e) => setTenantName(e.target.value)} disabled={!editOption ? true : false} />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{ADD.ADHAAR_NUM}</label><br />
-                                    <input type="text" placeholder={ADD.ADHAAR_NUM} className="input input-sm" style={{ outline: "none" }} value={adhaarNum} onChange={(e) => setAdhaarNum(e.target.value)} disabled={!editOption ? true : false} />
+                                    <input type="text" placeholder={ADD.ADHAAR_NUM} className="input input-sm" style={{ outline: "none", color:"white"}} value={adhaarNum} onChange={(e) => setAdhaarNum(e.target.value)} disabled={!editOption ? true : false} />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{ADD.PHONE}</label><br />
-                                    <input type="text" placeholder={ADD.PHONE} className="input input-sm" style={{ outline: "none" }} value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} disabled={!editOption ? true : false} />
+                                    <input type="text" placeholder={ADD.PHONE} className="input input-sm" style={{ outline: "none", color:"white"}} value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} disabled={!editOption ? true : false} />
                                 </div>
                             </div>
                             <div className="w-full h-auto flex justify-evenly gap-2 mt-3 p-1">
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{ADD.RENT_PRICE}</label><br />
-                                    <input type="text" placeholder={ADD.RENT_PRICE} className="input input-sm" style={{ outline: "none" }} value={rentPrice ? rentPrice : ""} onChange={(e) => setRentPrice(e.target.value)} disabled={!editOption ? true : false} />
+                                    <input type="text" placeholder={ADD.RENT_PRICE} className="input input-sm" style={{ outline: "none", color:"white" }} value={rentPrice ? rentPrice : ""} onChange={(e) => setRentPrice(e.target.value)} disabled={!editOption ? true : false} />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{ADD.UNIT_PRICE}</label><br />
-                                    <input type="text" placeholder={ADD.UNIT_PRICE} className="input input-sm" style={{ outline: "none" }} value={unitPrice ? unitPrice : ""} onChange={(e) => setUnitPrice(e.target.value)} disabled={!editOption ? true : false} />
+                                    <input type="text" placeholder={ADD.UNIT_PRICE} className="input input-sm" style={{ outline: "none", color:"white" }} value={unitPrice ? unitPrice : ""} onChange={(e) => setUnitPrice(e.target.value)} disabled={!editOption ? true : false} />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{TENENT.PAID_RENT}</label><br />
-                                    <input type="text" className="input input-sm" style={{ outline: "none" }} value={paidRent ? paidRent : ""} disabled />
+                                    <input type="text" className="input input-sm" style={{ outline: "none", color:"white" }} value={paidRent ? paidRent : ""} disabled />
                                 </div>
                                 <div>
                                     <label className="label-text text-xs font-semibold italic text-blue-500">{TENENT.BALANCE}</label><br />
-                                    <input type="text" placeholder={TENENT.BALANCE} className="input input-sm" style={{ outline: "none" }} value={rentBalance ? rentBalance : ""} disabled />
+                                    <input type="text" placeholder={TENENT.BALANCE} className="input input-sm" style={{ outline: "none", color:"white" }} value={rentBalance ? rentBalance : ""} disabled />
                                 </div>
                             </div>
                             <div className="w-full h-auto flex justify-center mt-3 p-1">

@@ -4,12 +4,15 @@ import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { API_URL, HOME, TENENT } from "../constant";
 import Header from "../components/header";
 import CreateTenent from "../components/CreateTenent";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import axios from "axios";
 
 const HomePage = () => {
     const [tenantName, setTenantName] = useState("");
     const [data, setData] = useState([]);
     const [totalTenants, setTotalTenants] = useState([]);
+    const [selectedTenants, setSelectedTenants] = useState([]);
     const [showAddTenent, setShowAddTenent] = useState(false);
     const [loading, setLoading] = useState(false);
     const location = useLocation();
@@ -67,8 +70,42 @@ const HomePage = () => {
     }
 
     const handleViewDetails = (tenantId) => {
-        navigate("/tenant", { state: { tenantId}});
+        navigate("/tenant", { state: { tenantId } });
     }
+
+    const handleDownloadPDF = () => {
+        const doc = new jsPDF();
+
+        const selectedData = data.filter(item => selectedTenants.includes(item.tenantID));
+
+        const tableData = selectedData.map((elem, index) => [
+            index + 1,
+            elem.tenantID,
+            elem.tenantName,
+            elem.rentPrice,
+            elem.unitPrice,
+            elem.currentMonth,
+            elem.totalRent,
+            elem.rentPaid,
+            elem.rentBalance,
+            `${Math.round((elem.rentPaid / elem.totalRent) * 100)}%`
+        ]);
+        autoTable(doc, {
+            head: [["S.no", "Tenant ID", "Tenant Name", "Rent Price", "Unit Price", "Current Month", "Total Rent", "Rent Paid", "Rent Balance", "Progress"]],
+            body: tableData
+        });
+        const today = new Date();
+        const formattedDate = today.toISOString().split("T")[0]; // e.g., "2025-04-24"      
+        doc.save(`selected-tenants(${formattedDate}).pdf`);
+    };
+    const handleSelectAll = (e) => {
+        if (e.target.checked) {
+            setSelectedTenants(data.map(d => d.tenantID));
+        } else {
+            setSelectedTenants([]);
+        }
+    };
+
 
     return (
         <>
@@ -103,8 +140,14 @@ const HomePage = () => {
                                             <table className="table text-white font-semibold m-auto">
                                                 <thead className="font-semibold">
                                                     <tr>
-                                                        <th><input type="checkbox" className="checkbox checkbox-sm"
-                                                        /></th>
+                                                        <th>
+                                                            <input
+                                                                type="checkbox"
+                                                                className="checkbox checkbox-sm"
+                                                                checked={selectedTenants.length === data.length && data.length > 0}
+                                                                onChange={handleSelectAll}
+                                                            />
+                                                        </th>
                                                         <th>{TENENT.SERIAL_NO}</th>
                                                         <th>{TENENT.TENENT_ID}</th>
                                                         <th>{TENENT.TENENT_NAME}</th>
@@ -121,7 +164,19 @@ const HomePage = () => {
                                                 <tbody>
                                                     {data.map((elem, index) => (
                                                         <tr key={elem.tenantID}>
-                                                            <td><input type="checkbox" className="checkbox checkbox-sm" /></td>
+                                                            <td><input
+                                                                type="checkbox"
+                                                                className="checkbox checkbox-sm"
+                                                                checked={selectedTenants.includes(elem.tenantID)}
+                                                                onChange={() => {
+                                                                    setSelectedTenants((prev) =>
+                                                                        prev.includes(elem.tenantID)
+                                                                            ? prev.filter((id) => id !== elem.tenantID)
+                                                                            : [...prev, elem.tenantID]
+                                                                    );
+                                                                }}
+                                                            />
+                                                            </td>
                                                             <td>{index + 1}</td>
                                                             <td>{elem.tenantID}</td>
                                                             <td>{elem.tenantName}</td>
@@ -137,14 +192,20 @@ const HomePage = () => {
                                                                 </div>
                                                                 }
                                                             </td>
-                                                            <td><button className="btn btn-link italic" onClick={() =>handleViewDetails(elem.tenantID)}>{TENENT.ACTION}</button></td>
+                                                            <td><button className="btn btn-link italic" onClick={() => handleViewDetails(elem.tenantID)}>{TENENT.ACTION}</button></td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div className="export-pdf w-full flex justify-center p-2 mt-3">
-                                            <button className="btn btn-outline btn-accent">{HOME.PDF}</button>
+                                            <button
+                                                className="btn btn-outline btn-accent"
+                                                onClick={handleDownloadPDF}
+                                                disabled={selectedTenants.length === 0}
+                                            >
+                                                {HOME.PDF}
+                                            </button>
                                         </div>
                                     </div>
                                 }
